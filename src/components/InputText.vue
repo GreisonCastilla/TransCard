@@ -7,6 +7,7 @@
       transition ease-linear duration-300"
       :class="{'-translate-y-4':text!==''}"
       :for="id"
+      :ref="id"
     >{{ name }}</label>
 
     <input
