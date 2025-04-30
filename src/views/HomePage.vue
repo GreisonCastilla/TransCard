@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup >
 
   import InputText from '../components/InputText.vue'
   import NormalButton from '../components/NormalButton.vue'
@@ -35,7 +35,7 @@
         name: "xxxxxxxxxx"
     }]
 
-    const ionInfinite = (event: InfiniteScrollCustomEvent) => {
+    const ionInfinite = (event) => {
         generateItems();
         setTimeout(() => event.target.complete(), 500);
       };

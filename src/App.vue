@@ -11,11 +11,11 @@
   </ion-app>
 </template>
 
-<script setup lang="ts">
+<script setup >
 import { IonApp, IonRouterOutlet, IonInfiniteScroll,
   IonInfiniteScrollContent } from '@ionic/vue';
 
-  const ionInfinite = (event: InfiniteScrollCustomEvent) => {
+  const ionInfinite = (event) => {
         generateItems();
         setTimeout(() => event.target.complete(), 500);
       };
