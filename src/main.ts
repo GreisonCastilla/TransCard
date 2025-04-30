@@ -35,24 +35,60 @@ import "@ionic/vue/css/palettes/dark.system.css";
 import "./theme/variables.css";
 import "./tailwind.css";
 
-import { defineCustomElement as jeepSqlite } from "jeep-sqlite/loader";
-import { Capacitor } from "@capacitor/core";
-import { CapacitorSQLite, SQLiteConnection } from "@capacitor-community/sqlite";
+import { Capacitor } from '@capacitor/core';
+import { CapacitorSQLite, SQLiteConnection, SQLiteDBConnection } from '@capacitor-community/sqlite';
+import { JeepSqlite } from 'jeep-sqlite/dist/components/jeep-sqlite';
+customElements.define("jeep-sqlite", JeepSqlite);
 
-jeepSqlite(window);
 
 window.addEventListener("DOMContentLoaded", async () => {
   try {
     const plataform = Capacitor.getPlatform();
-
     const sqlite = new SQLiteConnection(CapacitorSQLite);
 
+    if(plataform == 'web'){
+      const jeepSqliteEl = document.createElement('jeep-sqlite');
+      document.body.appendChild(jeepSqliteEl);
+      await customElements.whenDefined('jeep-sqlite');
+      
+      await sqlite.initWebStore();
+
+    }
+
+    const ret = await sqlite.checkConnectionsConsistency();
+    const isConn = (await sqlite.isConnection("db_transcard", false)).result;
+    let db = null;
+
+    if(ret.result && isConn){
+      db = await sqlite.retrieveConnection("db_transcard", false);
+    }else{
+      db = await sqlite.createConnection("db_card", false,"no-encryption", 1, false);
+    }
+    
+    /*await db.open();
+    
+    const query =`CREATE TABLE IF NOT EXISTS card (
+      id INTEGER PRIMARY KEY NOT NULL,
+      name TEXT NOT NULL
+    )`
+
+    const res = await db.execute(query);
+
+    if(res.changes && res.changes.changes && res.changes.changes <0){
+      throw new Error('Error: execute failed');
+    }
+
+    await sqlite.closeConnection('db_card', false)
+    */
     const app = createApp(App).use(IonicVue).use(router);
 
     router.isReady().then(() => {
       app.mount("#app");
     });
+    
   } catch (e) {
     console.log((e as any).message);
   }
 });
+
+
