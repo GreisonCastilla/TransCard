@@ -1,7 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-
+import { Storage } from '@ionic/storage'
+import { Capacitor } from '@capacitor/core'
 import { IonicVue } from "@ionic/vue";
 
 /* Core CSS required for Ionic components to work properly */
@@ -37,7 +38,9 @@ import "./tailwind.css";
 
 
 const app = createApp(App).use(IonicVue).use(router);
+    router.isReady().then(() => {
+      app.mount("#app");
+    });
 
-router.isReady().then(() => {
-  app.mount("#app");
-});
+
+
