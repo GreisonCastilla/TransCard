@@ -17,23 +17,25 @@
     :id="id"
     :type="type"
     v-model="text"
-    ref="id"
     >
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-
-    let text = ref("")
-    defineProps({
+    let text = ref('')
+    const props = defineProps({
         name:String,
         id: String,
         type: String,
-        
+        aux:{
+            type: String,
+            default: ''
+        }
     });
-
-
+    
+    text = ref(props.aux)
+    
 </script>
 
 <style lang="scss" scoped>

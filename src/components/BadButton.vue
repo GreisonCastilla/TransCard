@@ -1,7 +1,7 @@
 <template>
     <div class="sm:px-0 max-w-sm drop-shadow-xl ">
-        <div class=" max-w-sm px-6 transition-all duration-200 p-2 rounded-lg bg-amber-600 hover:bg-amber-200  group ease-linear"
-        :class="{'bg-amber-800  scale-95':isActive}"
+        <div class=" max-w-sm px-6 transition-all duration-200 p-2 rounded-lg bg-red-500 hover:bg-amber-200  group ease-linear"
+        :class="{'bg-red-800  scale-95':isActive}"
         @touchstart="activate()"
         @touchend="deactivate()"
         @touchcancel="deactivate()">

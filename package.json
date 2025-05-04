@@ -27,6 +27,7 @@
     "@ionic/vue": "^8.0.0",
     "@ionic/vue-router": "^8.0.0",
     "@tailwindcss/vite": "^4.1.4",
+    "@vueuse/core": "^13.1.0",
     "cordova-sqlite-storage": "^7.0.0",
     "ionicons": "^7.0.0",
     "jeep-sqlite": "^2.8.0",

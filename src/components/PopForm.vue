@@ -3,8 +3,13 @@
 
         <div @click.stop class=" flex flex-col rounded-lg bg-white relative space-y-2 w-[90vw] md:w-sm p-5 shadow-2xl opacity-100 ">
             <div class=" flex w-full place-content-between align-middle">
-                <label class="text-xl text-left ">Registrar tarjeta</label>
-                <div @click="changePopup()" class="text-xl w-7 h-7 text-white bg-red-500 rounded-full">
+                <label class="text-xl text-left "><b>Registrar tarjeta</b></label>
+                <div @click="changePopup()" class="text-xl w-7 h-7 text-white bg-red-500 rounded-full transition-all duration-300"
+                    :class="{'bg-red-800  scale-80':isActive}"
+                    @touchstart="activate()"
+                    @touchend="deactivate()"
+                    @touchcancel="deactivate()"
+                >
                     &times;
                 </div>
             </div>
@@ -14,7 +19,6 @@
                 <NormalInput name="Número de tarjeta" id="id_2"></NormalInput>
             </div>
             
-
             <NormalButton @click.stop="savedCards()" class="mt-3" action="Registrar"></NormalButton>
         </div>
     </div>
@@ -29,7 +33,7 @@
     import getBalance from '../requests/transcaribeSondapay';
     import { toast } from 'vue3-toastify';
     import "vue3-toastify/dist/index.css";
-
+    import { ref } from 'vue';
     
 
     const changePopup = ()=>{
@@ -76,5 +80,15 @@
         toast.success('La tarjeta se registro correctamente',{
                     position:'bottom-center'
                 })
+    }
+
+    let isActive = ref(false);
+
+    function activate() {
+        isActive.value = true;
+    }
+
+    function deactivate() {
+        isActive.value = false;
     }
 </script>

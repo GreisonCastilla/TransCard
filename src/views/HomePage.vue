@@ -16,6 +16,16 @@
     }
   })
 
+  let isActive = ref(false);
+
+  function activate() {
+    isActive.value = true;
+  }
+
+  function deactivate() {
+    isActive.value = false;
+  }
+
   const changePopup = ()=>{
     popup.value = !popup.value
   }
@@ -52,7 +62,12 @@
         <div class="flex">
           <span class="text-xl p-1 grow"> <b>Tarjetas</b></span>
 
-          <div @click="changePopup()" class="p-0.5 text-xl bg-green-500 rounded-full h-8 w-8 text-center ">
+          <div @click="changePopup()" class=" text-white p-0.5 text-xl bg-green-500 rounded-full h-8 w-8 text-center transition-all duration-500 "
+            :class="{'bg-green-800  scale-80':isActive}"
+            @touchstart="activate()"
+            @touchend="deactivate()"
+            @touchcancel="deactivate()"
+          >
             +
           </div>
         </div>
