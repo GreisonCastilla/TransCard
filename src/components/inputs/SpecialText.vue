@@ -24,7 +24,7 @@
 
 <script setup>
 
-import { text } from '../composables/globalVariable';
+import { text } from '../../composables/globalVariable';
 
 defineProps({
   name:String,

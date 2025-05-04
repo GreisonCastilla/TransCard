@@ -25,12 +25,12 @@
 </template>
 
 <script async setup>
-    import { popup } from '../composables/globalVariable';
-    import NormalInput from './NormalInput.vue';
-    import NormalButton from './NormalButton.vue';
-    import { cards } from '../composables/globalVariable';
-    import { getStorage } from '../storage'
-    import getBalance from '../requests/transcaribeSondapay';
+    import { popup } from '../../composables/globalVariable';
+    import NormalInput from '../inputs/NormalInput.vue';
+    import NormalButton from '../buttons/NormalButton.vue';
+    import { cards } from '../../composables/globalVariable';
+    import { getStorage } from '../../storage'
+    import getBalance from '../../requests/transcaribeSondapay';
     import { toast } from 'vue3-toastify';
     import "vue3-toastify/dist/index.css";
     import { ref } from 'vue';

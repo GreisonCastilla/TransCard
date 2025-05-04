@@ -2,11 +2,11 @@
   
   import Card from '../components/Card.vue'
   import { onMounted, ref } from 'vue';
-  import {IonContent, IonInfiniteScroll, IonInfiniteScrollContent} from '@ionic/vue'
+  import {IonContent, IonInfiniteScroll, IonInfiniteScrollContent, IonRefresher, IonRefresherContent} from '@ionic/vue'
   import { getStorage } from '../storage'
   import ScanId from '../components/ScanId.vue';
-  import { text, auxId, balance, popup, cards } from '../composables/globalVariable';
-  import PopForm from '../components/PopForm.vue';
+  import { auxId, balance, popup, cards } from '../composables/globalVariable';
+  import PopForm from '../components/popups/PopForm.vue';
 
   onMounted(async ()=>{
     const storage = await getStorage()
@@ -30,21 +30,23 @@
     popup.value = !popup.value
   }
 
-  const savedCards= async () => {
-    const storage = await getStorage()
-    const currentItems = (await storage.get('cards')) || []
-    const updatedItems = [...currentItems, {name:"tarjeta", id:1463965146}]
-
-    await storage.set('cards', updatedItems)
-    cards.value = updatedItems
-
-  }
+  const handleRefresh = (event) => {
+        setTimeout(() => {
+          location.reload()
+          event.target.complete();
+        }, 2000);
+      };
 
 </script>
 
 
 <template>
   <ion-content>
+    <ion-refresher class="fill-white " slot="fixed" @ionRefresh="handleRefresh($event)">
+      <ion-refresher-content refreshing-spinner="circles">
+      </ion-refresher-content>
+    </ion-refresher>
+
     <div class="bg-white w-full flex flex-col text-left ">
       <div class="flex h-24 w-full bg-amber-600 items-end"> 
         <h1 class="text-white ml-4"> <b> Transcard</b></h1>
@@ -81,9 +83,11 @@
         </div>
         
         <div v-else class=" flex flex-col md:flex-row md:space-x-3 md:flex-wrap space-y-3 mt-3">
-          <div  v-for="card in cards" :key="card.id">
-            <Card :card="card"></Card>
-          </div>
+
+            <div  v-for="card in cards" :key="card.id">
+                <Card :card="card"></Card>
+            </div>
+
         </div>
         
       </div>
@@ -98,5 +102,6 @@
 
 
 <style scoped>
+
 
 </style>

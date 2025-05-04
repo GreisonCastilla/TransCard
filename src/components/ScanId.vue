@@ -24,8 +24,8 @@
 
 <script setup>
     import { CapacitorBarcodeScanner, CapacitorBarcodeScannerAndroidScanningLibrary, CapacitorBarcodeScannerCameraDirection, CapacitorBarcodeScannerScanOrientation, CapacitorBarcodeScannerTypeHint } from '@capacitor/barcode-scanner';
-    import InputText from './SpecialText.vue'
-    import NormalButton from '../components/NormalButton.vue'
+    import InputText from './inputs/SpecialText.vue'
+    import NormalButton from './buttons/NormalButton.vue'
     import { text, auxId, balance } from '../composables/globalVariable';
     import { ref } from 'vue';
     import getBalance from '../requests/transcaribeSondapay';
