@@ -19,20 +19,34 @@
 
 <script setup>
     import { CapacitorBarcodeScanner, CapacitorBarcodeScannerAndroidScanningLibrary, CapacitorBarcodeScannerCameraDirection, CapacitorBarcodeScannerScanOrientation, CapacitorBarcodeScannerTypeHint } from '@capacitor/barcode-scanner';
-    import InputText from '../components/InputText.vue'
+    import InputText from './SpecialText.vue'
     import NormalButton from '../components/NormalButton.vue'
-    import { text } from '../composables/useId';
+    import { text, auxId, balance } from '../composables/globalVariable';
+
+    import getBalance from '../requests/transcaribeSondapay';
+    import { toast } from 'vue3-toastify';
+    import "vue3-toastify/dist/index.css";
 
     function consult(){
     
-        if(!id.value==""){
-            
-            text.value=id.value
-            id.value = id.value
-            balance.value = 3400;//composable
-            aux_id.value = id.value;//composable
-        }
-    
+        getBalance(id.value).then(result=>{
+            if(result != null){
+                auxId.value = id.value;
+                text.value = id.value
+                id.value = id.value
+                balance.value="$"+result;
+                toast.success('Saldo consultado',{
+                    position:'bottom-center'
+                })
+            }else{
+                toast.error('No se encontro esta tarjeta',{
+                    position:'bottom-center'
+                })
+            }
+                
+        });
+        
+        
     }
 
     const scanBarcode = async () => {

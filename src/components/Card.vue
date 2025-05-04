@@ -1,15 +1,15 @@
 <template>
 
-    <div class=" flex h-25 bg-size-full drop-shadow-xl p-4 rounded-lg  bg-amber-600 text-white ">
+    <div class=" flex h-30 md:w-90 bg-size-full drop-shadow-xl p-4 rounded-lg  bg-amber-600 text-white ">
        
         <div class="flex flex-col grow place-content-between">
 
             <div class="flex space-x-3">
                 
-                <p class="text-xl ">{{ card.name }}</p>
+                <p class="text-lg "><b>{{ card.name }}</b></p>
             </div>
 
-            <p>Cod. {{ card.id }}</p>
+            <p class="text-sm ">Cod. {{ card.id }}</p>
         </div>
 
         <div class="place-content-end " >
@@ -20,13 +20,19 @@
 </template>
 
 <script setup>
-    defineProps({
+
+    import getBalance from '../requests/transcaribeSondapay';
+    import { onMounted, ref } from 'vue';
+    const props = defineProps({
         card:Object
     })
-    
-    import { ref } from 'vue';
 
-    let balance = ref(1234000000);
+    let balance = ref("")
+    getBalance(props.card.id).then(result=>{
+        balance.value=result
+    });
+    
+   
     
 </script>
 

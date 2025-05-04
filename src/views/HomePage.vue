@@ -5,10 +5,8 @@
   import {IonContent, IonInfiniteScroll, IonInfiniteScrollContent} from '@ionic/vue'
   import { getStorage } from '../storage'
   import ScanId from '../components/ScanId.vue';
-
-  const cards = ref([])
-  let balance = ref("↑ Consulta tu saldo ↑");
-  let aux_id = ref("xxxxxxxxxx")
+  import { text, auxId, balance, popup, cards } from '../composables/globalVariable';
+  import PopForm from '../components/PopForm.vue';
 
   onMounted(async ()=>{
     const storage = await getStorage()
@@ -18,10 +16,14 @@
     }
   })
 
+  const changePopup = ()=>{
+    popup.value = !popup.value
+  }
+
   const savedCards= async () => {
     const storage = await getStorage()
     const currentItems = (await storage.get('cards')) || []
-    const updatedItems = [...currentItems, {name:"tarjeta", id:1234}]
+    const updatedItems = [...currentItems, {name:"tarjeta", id:1463965146}]
 
     await storage.set('cards', updatedItems)
     cards.value = updatedItems
@@ -42,29 +44,37 @@
 
       <div class="flex flex-col mt-2 pr-4 pl-4 text-gray-600 space-y-1">
         <span class="text-xl "> <b>Saldo</b></span>
-        <p><b>Tarjeta: </b>{{ aux_id }}</p>
+        <p><b>Tarjeta: </b>{{ auxId }}</p>
         <div class="max-w-sm p-2 bg-gray-300 rounded-lg text-center drop-shadow-xl">{{ balance }}</div>
       </div>
-
 
       <div class="flex flex-col mt-2 grow p-4 text-gray-600  ">
         <div class="flex">
           <span class="text-xl p-1 grow"> <b>Tarjetas</b></span>
 
-          <div @click="savedCards()" class="p-0.5 text-xl bg-green-500 rounded-full h-8 w-8 text-center ">
+          <div @click="changePopup()" class="p-0.5 text-xl bg-green-500 rounded-full h-8 w-8 text-center ">
             +
           </div>
         </div>
+
+        <div v-if="cards.length==0">
+          <div class=" mt-3 flex w-full h-30 p-4 bg-gray-300 rounded-lg place-items-center place-content-center">
+          
+              <label class=" drop-shadow-xl text-gray-600 " >No hay tarjetas registradas</label>
+          </div>
+
+        </div>
         
-        <div class=" flex flex-col space-y-3 mt-3">
+        <div v-else class=" flex flex-col md:flex-row md:space-x-3 md:flex-wrap space-y-3 mt-3">
           <div  v-for="card in cards" :key="card.id">
             <Card :card="card"></Card>
           </div>
         </div>
         
       </div>
-    </div>
 
+    </div>
+    <PopForm v-show="popup"></PopForm>
     <ion-infinite-scroll>
     </ion-infinite-scroll>
   </ion-content>

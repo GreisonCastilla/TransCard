@@ -1,4 +1,4 @@
-async function getSaldo(cardNumber) {
+async function getBalance(cardNumber) {
     const payload = { nivelConsulta: 1, tipoConsulta: 2, numExterno: cardNumber };
     try {
         const response = await fetch('https://recaudo.sondapay.com/recaudowsrest/producto/consultaTrx', {
@@ -15,4 +15,4 @@ async function getSaldo(cardNumber) {
     }
 };
 
-export default getSaldo;
+export default getBalance;
