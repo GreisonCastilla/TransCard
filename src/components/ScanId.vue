@@ -33,23 +33,31 @@
     import "vue3-toastify/dist/index.css";
 
     function consult(){
-    
-        getBalance(id.value).then(result=>{
-            if(result != null){
-                auxId.value = id.value;
-                text.value = id.value
-                id.value = id.value
-                balance.value="$"+result;
-                toast.success('Saldo consultado',{
-                    position:'bottom-center'
-                })
-            }else{
-                toast.error('No se encontro esta tarjeta',{
-                    position:'bottom-center'
-                })
-            }
-                
-        });
+        
+        if(!id.value == ""){
+            getBalance(id.value).then(result=>{
+                if(result != null){
+                    auxId.value = id.value;
+                    text.value = id.value
+                    id.value = id.value
+                    balance.value="$"+result;
+                    toast.success('Saldo consultado',{
+                        position:'bottom-center'
+                    })
+                }else{
+                    toast.error('No se encontro esta tarjeta',{
+                        position:'bottom-center'
+                    })
+                }
+                    
+            });
+        }else{
+            toast.error('Ingrese el número de la tarjeta',{
+                position:'bottom-center'
+            })
+        }
+
+        
         
         
     }

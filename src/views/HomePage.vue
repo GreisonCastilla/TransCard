@@ -57,7 +57,7 @@
       <div class="flex flex-col mt-2 pr-4 pl-4 text-gray-600 space-y-1">
         <span class="text-xl "> <b>Saldo</b></span>
         <p><b>Tarjeta: </b>{{ auxId }}</p>
-        <div class="max-w-sm p-2 bg-gray-300 rounded-lg text-center drop-shadow-xl">{{ balance }}</div>
+        <div class=" p-2 bg-gray-300 rounded-lg text-center drop-shadow-xl">{{ balance }}</div>
       </div>
 
       <div class="flex flex-col mt-2 grow p-4 text-gray-600  ">
