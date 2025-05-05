@@ -33,7 +33,12 @@ import "@ionic/vue/css/display.css";
 import "./theme/variables.css";
 import "./tailwind.css";
 
-const app = createApp(App).use(IonicVue).use(router);
+import Vue3Toasity from 'vue3-toastify';
+const app = createApp(App).use(IonicVue).use(router).use(
+  Vue3Toasity,
+  {
+    limit:10
+  });
 
 router.isReady().then(() => {
   app.mount("#app");

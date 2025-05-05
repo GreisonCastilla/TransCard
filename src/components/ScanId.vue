@@ -18,7 +18,14 @@
           <InputText id="id" name="Número de tarjeta" type="number"></InputText>
         </div>
 
-        <NormalButton @click="consult()" class="mt-4" action="Consultar"></NormalButton>
+        <NormalButton @click="consult()" class="mt-4" action='
+        Consultar
+
+        <svg class="h-5 ml-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        '> </NormalButton>
+
       </div>
 </template>
 
@@ -33,8 +40,8 @@
     import "vue3-toastify/dist/index.css";
 
     function consult(){
-        
         if(!id.value == ""){
+            balance.value = "Cargando..."
             getBalance(id.value).then(result=>{
                 if(result != null){
                     auxId.value = id.value;
@@ -42,23 +49,25 @@
                     id.value = id.value
                     balance.value="$"+result;
                     toast.success('Saldo consultado',{
-                        position:'bottom-center'
+                        position:'bottom-center',
+                        toastId:"consulted-balance"
+
                     })
                 }else{
+                    balance.value = "↑ Consulta una tarjeta valida ↑";
                     toast.error('No se encontro esta tarjeta',{
-                        position:'bottom-center'
+                        position:'bottom-center',
+                        toastId:"not-found"
                     })
                 }
                     
             });
         }else{
             toast.error('Ingrese el número de la tarjeta',{
-                position:'bottom-center'
+                position:'bottom-center',
+                toastId:"not-id"
             })
         }
-
-        
-        
         
     }
 
@@ -66,8 +75,8 @@
         try {
         const result = await CapacitorBarcodeScanner.scanBarcode({
             hint: CapacitorBarcodeScannerTypeHint.ALL,
-            scanInstructions: "Please scan a barcode",
-            scanButton: true,
+            scanInstructions: "Escanea una tarjeta",
+            scanButton: false,
             scanText: "Scan",
             cameraDirection: CapacitorBarcodeScannerCameraDirection.BACK,
             scanOrientation: CapacitorBarcodeScannerScanOrientation.ADAPTIVE,

@@ -1,11 +1,10 @@
 <template>
-    <div class="sm:px-0 max-w-sm drop-shadow-xl ">
-        <div class=" max-w-sm px-6 transition-all duration-200 p-2 rounded-lg bg-red-500 hover:bg-amber-200  group ease-linear"
+    <div class="sm:px-0 drop-shadow-xl ">
+        <div v-html="action" class=" flex text-white place-content-center px-6 transition-all duration-200 p-2 rounded-lg bg-red-500 hover:bg-amber-200  group ease-linear"
         :class="{'bg-red-800  scale-95':isActive}"
         @touchstart="activate()"
         @touchend="deactivate()"
         @touchcancel="deactivate()">
-            <p class="text-sm text-white group-hover:text-gray-500 text-center">{{ action }}</p>
         </div>
     </div>
  

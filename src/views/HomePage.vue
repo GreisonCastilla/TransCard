@@ -2,11 +2,20 @@
   
   import Card from '../components/Card.vue'
   import { onMounted, ref } from 'vue';
-  import {IonContent, IonInfiniteScroll, IonInfiniteScrollContent, IonRefresher, IonRefresherContent} from '@ionic/vue'
+  import {IonBackButton, IonContent, IonInfiniteScroll, IonInfiniteScrollContent, IonRefresher, IonRefresherContent} from '@ionic/vue'
   import { getStorage } from '../storage'
   import ScanId from '../components/ScanId.vue';
   import { auxId, balance, popup, cards } from '../composables/globalVariable';
   import PopForm from '../components/popups/PopForm.vue';
+  import { useBackButton, useIonRouter } from '@ionic/vue';
+  import { App } from '@capacitor/app';
+
+  const ionRouter = useIonRouter();
+  useBackButton(-1, () => {
+    if (!ionRouter.canGoBack()) {
+      App.exitApp();
+    }
+  });
 
   onMounted(async ()=>{
     const storage = await getStorage()

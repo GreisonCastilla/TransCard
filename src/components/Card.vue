@@ -39,7 +39,7 @@
         card:Object
     })
 
-    let balance = ref("")
+    let balance = ref("Cargando...")
     getBalance(props.card.id).then(result=>{
         balance.value=result
     });
