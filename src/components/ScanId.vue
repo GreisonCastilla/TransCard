@@ -41,7 +41,7 @@
 
     function consult(){
         if(!id.value == ""){
-            balance.value = "Cargando..."
+            balance.value = "Consultando..."
             getBalance(id.value).then(result=>{
                 if(result != null){
                     auxId.value = id.value;

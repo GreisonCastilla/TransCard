@@ -1,14 +1,14 @@
 <script setup >
   
   import Card from '../components/Card.vue'
-  import { onMounted, ref } from 'vue';
+  import { ref, onMounted} from 'vue';
   import {IonBackButton, IonContent, IonInfiniteScroll, IonInfiniteScrollContent, IonRefresher, IonRefresherContent} from '@ionic/vue'
-  import { getStorage } from '../storage'
+  import { getStorage } from '../storage';
   import ScanId from '../components/ScanId.vue';
   import { auxId, balance, popup, cards } from '../composables/globalVariable';
   import PopForm from '../components/popups/PopForm.vue';
   import { useBackButton, useIonRouter } from '@ionic/vue';
-  import { App } from '@capacitor/app';
+  
 
   const ionRouter = useIonRouter();
   useBackButton(-1, () => {
@@ -16,14 +16,16 @@
       App.exitApp();
     }
   });
-
+ 
   onMounted(async ()=>{
+    
     const storage = await getStorage()
     const savedItems = await storage.get('cards')
     if (Array.isArray(savedItems)) {
       cards.value = savedItems
     }
   })
+
 
   let isActive = ref(false);
 

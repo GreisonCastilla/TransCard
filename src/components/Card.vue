@@ -17,7 +17,7 @@
             </div>
 
             <div class="place-content-end " >
-                <p>${{ balance }}</p>            
+                <p>{{ balance }}</p>            
             </div>
         </div>     
     
@@ -39,9 +39,9 @@
         card:Object
     })
 
-    let balance = ref("Cargando...")
+    let balance = ref("Consultando...")
     getBalance(props.card.id).then(result=>{
-        balance.value=result
+        balance.value="$" + result
     });
 
     let isActive = ref(false);
