@@ -9,7 +9,7 @@
         class="popedit flex flex-col rounded-lg bg-white relative space-y-2 w-[90vw] md:w-sm p-5 shadow-2xl opacity-100 "
       >
         <div class=" flex flex-col w-full place-content-between align-middle">
-          <label class="text-xl text-left text-red-500 "><b>Advertencia</b></label>
+          <p class="text-xl text-left text-red-500 "><b>Advertencia</b></p>
 
           <p>¿Realmente desea eliminar la tarjeta {{ card.name }}?</p>
           <p><b>código:</b>{{ card.id }}</p>

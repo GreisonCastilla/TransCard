@@ -97,7 +97,7 @@ watchEffect(async () => {
         <div v-if="cards.length==0">
           <div class=" mt-3 flex w-full h-30 p-4 bg-gray-300 rounded-lg place-items-center place-content-center">
 
-            <label class=" drop-shadow-xl text-gray-600 ">No hay tarjetas registradas</label>
+            <p class=" drop-shadow-xl text-gray-600 ">No hay tarjetas registradas</p>
           </div>
 
         </div>

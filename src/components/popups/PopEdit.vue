@@ -3,7 +3,7 @@
 
         <div  @click.stop class="popedit flex flex-col rounded-lg bg-white relative space-y-2 w-[90vw] md:w-sm p-5 shadow-2xl opacity-100 ">
             <div class=" flex w-full place-content-between align-middle">
-                <label class="text-xl text-left "><b>Editar tarjeta</b></label>
+                <p class="text-xl text-left "><b>Editar tarjeta</b></p>
                 
                 <XButton @click="close()"></XButton>
             </div>
