@@ -13,7 +13,7 @@
                 <p class="text-lg "><b>{{ card.name }}</b></p>
             </div>
 
-            <p class="text-sm ">Cod. {{ card.id }}</p>
+            <p class="text-sm ">Cód. {{ card.id }}</p>
             </div>
 
             <div class="place-content-end " >

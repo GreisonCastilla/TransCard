@@ -5,8 +5,8 @@
             <div class=" flex flex-col w-full place-content-between align-middle">
                 <label class="text-xl text-left text-red-500 "><b>Advertencia</b></label>
                 
-                <p>¿Realmente desea elimiar la tarjeta {{ card.name }}?</p>
-                <p><b>codigo:</b>{{ card.id }}</p>
+                <p>¿Realmente desea eliminar la tarjeta {{ card.name }}?</p>
+                <p><b>código:</b>{{ card.id }}</p>
             </div>
 
             <NormalButton @click.stop="keep()" class="mt-3" action="Mantener"></NormalButton>

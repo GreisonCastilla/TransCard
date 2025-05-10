@@ -7,15 +7,6 @@
   import ScanId from '../components/ScanId.vue';
   import { auxId, balance, popup, cards } from '../composables/globalVariable';
   import PopForm from '../components/popups/PopForm.vue';
-  import { useBackButton, useIonRouter } from '@ionic/vue';
-  
-
-  const ionRouter = useIonRouter();
-  useBackButton(-1, () => {
-    if (!ionRouter.canGoBack()) {
-      App.exitApp();
-    }
-  });
  
   onMounted(async ()=>{
     

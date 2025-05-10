@@ -60,7 +60,7 @@
                 if(result != null){
                     save()
                 }else{
-                    toast.error('No se encontro esta tarjeta',{
+                    toast.error('No se encontró esta tarjeta',{
                         position:'bottom-center',
                         toastId:"not-found-card"
                     })
@@ -95,7 +95,7 @@
         await storage.set('cards', updatedItems)
         cards.value = updatedItems
 
-        toast.success('La tarjeta se registro correctamente',{
+        toast.success('La tarjeta se registró correctamente',{
             position:'bottom-center',
             toastId:"toast-save"
         })

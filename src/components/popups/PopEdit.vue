@@ -10,7 +10,7 @@
 
             <div class="flex flex-col space-y-3 mt-6 mb-3">
                 <NormalInput :aux="card.name" name="Nombre" id="name_3"></NormalInput>
-                <p>cod. {{ card.id }}</p>
+                <p>cód. {{ card.id }}</p>
             </div>
 
             <NormalButton @click.stop="edit()" class="mt-3" action='Guardar cambios
