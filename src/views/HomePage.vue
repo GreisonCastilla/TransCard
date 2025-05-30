@@ -65,20 +65,20 @@ watchEffect(async () => {
       </ion-refresher-content>
     </ion-refresher>
 
-    <div class="bg-white w-full flex flex-col text-left ">
+    <div class="bg-white w-full flex flex-col text-left space-y-4 ">
       <div class="flex h-24 w-full bg-amber-600 items-end">
         <h1 class="text-white ml-4"> <b> Transcard</b></h1>
       </div>
 
       <ScanId></ScanId>
 
-      <div class="flex flex-col mt-2 pr-4 pl-4 text-gray-600 space-y-1">
+      <div class="flex flex-col pr-4 pl-4 text-gray-600 space-y-1">
         <span class="text-xl "> <b>Saldo</b></span>
         <p><b>Tarjeta: </b>{{ auxId }}</p>
         <div class=" p-2 bg-gray-300 rounded-lg text-center drop-shadow-xl">{{ balance }}</div>
       </div>
 
-      <div class="flex flex-col mt-2 grow p-4 text-gray-600  ">
+      <div class="flex flex-col grow p-4 text-gray-600  ">
         <div class="flex">
           <span class="text-xl p-1 grow"> <b>Tarjetas</b></span>
 

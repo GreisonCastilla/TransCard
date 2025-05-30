@@ -1,6 +1,6 @@
 <template>
     <div class="sm:px-0  drop-shadow-xl ">
-        <div v-html="action" class=" flex text-white place-content-center  px-6 transition-all duration-200 p-2 rounded-lg bg-amber-600 hover:bg-amber-200  group ease-linear"
+        <div v-html="action" class=" flex text-white place-content-center  px-6 transition-all duration-200 p-2 rounded-lg bg-amber-600 group ease-linear"
         :class="{'bg-amber-800  scale-95':isActive}"
         @touchstart="activate()"
         @touchend="deactivate()">

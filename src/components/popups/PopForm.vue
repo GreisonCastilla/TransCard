@@ -9,22 +9,10 @@
             
             <div class="flex flex-col space-y-10 mt-3 mb-3">
                 <NormalInput name="Nombre" id="name_2"></NormalInput>
-                <div class="flex">
-                    <div @click.stop="scanBarcode()"
-                        class="p-0.5  rounded-lg w-10 transition-all duration-300"
-                        :class="{'bg-gray-300  scale-80':isActive}"
-                        @touchstart="activate()"
-                        @touchend="deactivate()"
-                        @touchcancel="deactivate()">
-                        <svg  class="h-9 mr-2 " viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V8M8 21H7.8C6.11984 21 5.27976 21 4.63803 20.673C4.07354 20.3854 3.6146 19.9265 3.32698 19.362C3 18.7202 3 17.8802 3 16.2V16M21 8V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H16M21 16V16.2C21 17.8802 21 18.7202 20.673 19.362C20.3854 19.9265 19.9265 20.3854 19.362 20.673C18.7202 21 17.8802 21 16.2 21H16M3 12H3.01M7.5 12H7.51M16.5 12H16.51M12 12H12.01M21 12H21.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <SpecialText2 name="Número de tarjeta" id="id_2" type="number"></SpecialText2>
-                </div>
+                <SpecialText2 name="Número de tarjeta" id="id_2" type="number"></SpecialText2>
                 
             </div>
-            
+            <ScanButton class="mt-2" @click.stop="scanBarcode()"></ScanButton>
             <NormalButton @click.stop="savedCards()" class="mt-3" action='Registrar
             
             <svg class="h-5 ml-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,6 +36,7 @@
     import SpecialText2 from "../inputs/SpecialText2.vue"
     import { CapacitorBarcodeScanner, CapacitorBarcodeScannerAndroidScanningLibrary, CapacitorBarcodeScannerCameraDirection, CapacitorBarcodeScannerScanOrientation, CapacitorBarcodeScannerTypeHint } from '@capacitor/barcode-scanner';
     import XButton from '../buttons/XButton.vue';
+    import ScanButton from '../buttons/ScanButton.vue';
 
     const changePopup = ()=>{
         popup.value = !popup.value
@@ -121,14 +110,5 @@
         }
     };
 
-    let isActive = ref(false);
-
-    function activate() {
-        isActive.value = true;
-    }
-
-    function deactivate() {
-        isActive.value = false;
-    }
 
 </script>

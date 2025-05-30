@@ -10,7 +10,7 @@
     >{{ name }}</label>
 
     <input
-      class="border-b-2 border-gray-500 focus:border-amber-500 bg-transparent
+      class="border-b-2 border-gray-500 focus:border-amber-600 bg-transparent
             outline-none transition-all duration-300 w-full p-1
              "
       :class="{'text-amber-600':!text==''}"
