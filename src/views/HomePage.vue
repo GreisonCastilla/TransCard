@@ -11,7 +11,7 @@ import {
 } from "@ionic/vue";
 import { getStorage } from "../storage";
 import ScanId from "../components/ScanId.vue";
-import { auxId, balance, popup, cards } from "../composables/globalVariable";
+import { auxId, balance, cards } from "../composables/globalVariable";
 import PopForm from "../components/popups/PopForm.vue";
 
 onMounted(async () => {
@@ -23,6 +23,7 @@ onMounted(async () => {
 });
 
 let isActive = ref(false);
+const showPopForm = ref(false);
 
 function activate() {
   isActive.value = true;
@@ -31,10 +32,6 @@ function activate() {
 function deactivate() {
   isActive.value = false;
 }
-
-const changePopup = () => {
-  popup.value = !popup.value;
-};
 
 const handleRefresh = (event) => {
   setTimeout(() => {
@@ -83,7 +80,7 @@ watchEffect(async () => {
           <span class="text-xl p-1 grow"> <b>Tarjetas</b></span>
 
           <div
-            @click="changePopup()"
+            @click="showPopForm=true"
             class=" text-white p-0.5 text-xl bg-green-500 rounded-full h-8 w-8 text-center transition-all duration-500 "
             :class="{'bg-green-800  scale-80':isActive}"
             @touchstart="activate()"
@@ -120,7 +117,7 @@ watchEffect(async () => {
       </div>
 
     </div>
-    <PopForm v-show="popup"></PopForm>
+    <PopForm v-show="showPopForm" @close="showPopForm=false"></PopForm>
     <ion-infinite-scroll>
     </ion-infinite-scroll>
   </ion-content>

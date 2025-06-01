@@ -1,14 +1,14 @@
 <template >
-    <div v-show="popup" @click="changePopup" class="text-gray-600  fixed grid place-content-center top-0 left-0  h-full w-full bg-gray-600/50 ">
+    <div @click="$emit('close')" class="text-gray-600  fixed grid place-content-center top-0 left-0  h-full w-full bg-gray-600/50 ">
 
         <div @click.stop class=" flex flex-col rounded-lg bg-white relative space-y-2 w-[90vw] md:w-sm p-5 shadow-2xl opacity-100 ">
             <div class=" flex w-full place-content-between align-middle">
                 <p class="text-xl text-left "><b>Registrar tarjeta</b></p>
-                <XButton @click="changePopup"></XButton>
+                <XButton @click="$emit('close')"></XButton>
             </div>
             
             <div class="flex flex-col space-y-10 mt-3 mb-3">
-                <NormalInput name="Nombre" id="name_2"></NormalInput>
+                <NormalInput ref="inputRef" name="Nombre" id="name_2"></NormalInput>
                 <SpecialText2 name="Número de tarjeta" id="id_2" type="number"></SpecialText2>
                 
             </div>
@@ -24,7 +24,6 @@
 </template>
 
 <script async setup>
-    import { popup } from '../../composables/globalVariable';
     import NormalInput from '../inputs/NormalInput.vue';
     import NormalButton from '../buttons/NormalButton.vue';
     import { cards, text2 } from '../../composables/globalVariable';
@@ -37,11 +36,9 @@
     import { CapacitorBarcodeScanner, CapacitorBarcodeScannerAndroidScanningLibrary, CapacitorBarcodeScannerCameraDirection, CapacitorBarcodeScannerScanOrientation, CapacitorBarcodeScannerTypeHint } from '@capacitor/barcode-scanner';
     import XButton from '../buttons/XButton.vue';
     import ScanButton from '../buttons/ScanButton.vue';
-
-    const changePopup = ()=>{
-        popup.value = !popup.value
-    }
-
+    
+    const emit = defineEmits(['close'])
+   
     const savedCards = async () => {
         
         if(!id_2.value =="" && !name_2.value==""){
@@ -88,6 +85,11 @@
             position:'bottom-center',
             toastId:"toast-save"
         })
+        callReset()
+        text2.value = "";
+        id_2.value = "";
+        emit('close');
+
     }
 
     const scanBarcode = async () => {
@@ -110,5 +112,12 @@
         }
     };
 
+    const inputRef = ref(null);
+
+    function callReset() {
+        if (inputRef.value) {
+            inputRef.value.resetForm(); // llama a la función del hijo
+        }
+    }
 
 </script>

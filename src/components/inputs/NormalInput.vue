@@ -35,7 +35,14 @@ import { ref } from 'vue';
     });
     
     text = ref(props.aux)
-    
+
+    function resetForm() {
+        text.value = "";
+    }
+
+    defineExpose({
+    resetForm
+    })
 </script>
 
 <style lang="scss" scoped>

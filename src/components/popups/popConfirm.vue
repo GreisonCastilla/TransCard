@@ -16,12 +16,12 @@
         </div>
 
         <NormalButton
-          @click.stop="keep()"
+          @click="$emit('cancel')"
           class="mt-3"
           action="Mantener"
         ></NormalButton>
         <BadButton
-          @click.stop="confirm()"
+          @click.stop="$emit('confirm')"
           action="Eliminar"
         ></BadButton>
       </div>
@@ -31,25 +31,16 @@
 </template>
 
 <script setup>
-import { popup3, deleteCard } from "../../composables/globalVariable";
-import NormalInput from "../inputs/NormalInput.vue";
 import NormalButton from "../buttons/NormalButton.vue";
 import BadButton from "../buttons/BadButton.vue";
 import "vue3-toastify/dist/index.css";
+
+defineEmits(['confirm', 'cancel']);
 
 const props = defineProps({
   card: Object,
 });
 
-const keep = () => {
-  deleteCard.value = false;
-  popup3.value = false;
-};
-
-const confirm = () => {
-  deleteCard.value = true;
-  popup3.value = false;
-};
 </script>
 
 <style>

@@ -26,12 +26,11 @@
 
 import { text2 } from '../../composables/globalVariable';
 
-defineProps({
+const props = defineProps({
   name:String,
   id: String,
   type: String,
   
 });
-
 
 </script>
